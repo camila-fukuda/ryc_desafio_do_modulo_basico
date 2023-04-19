@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ryc_desafio_do_modulo_basico/components/status_app_bar.dart';
 import 'package:ryc_desafio_do_modulo_basico/pages/dashboard_page.dart';
 import 'package:ryc_desafio_do_modulo_basico/pages/rewards_page.dart';
 
@@ -32,27 +33,31 @@ class _DashboardState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Desafio'),
+      appBar: const PreferredSize(
+        preferredSize: Size.fromHeight(140),
+        child: StatusAppBar(),
       ),
       body: _screens![_selectedScreenIndex]['screen'] as Widget,
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: _selectScreen,
-        backgroundColor: Theme.of(context).colorScheme.secondary,
-        unselectedItemColor: Colors.white,
-        selectedItemColor: Theme.of(context).colorScheme.primary,
-        currentIndex: _selectedScreenIndex,
-        type: BottomNavigationBarType.fixed,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home Page',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.star),
-            label: 'Rewards',
-          ),
-        ],
+      bottomNavigationBar: SizedBox(
+        height: 80,
+        child: BottomNavigationBar(
+          onTap: _selectScreen,
+          backgroundColor: Theme.of(context).colorScheme.secondary,
+          unselectedItemColor: Colors.white,
+          selectedItemColor: Theme.of(context).colorScheme.primary,
+          currentIndex: _selectedScreenIndex,
+          type: BottomNavigationBarType.fixed,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home Page',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.star),
+              label: 'Rewards',
+            ),
+          ],
+        ),
       ),
     );
   }
