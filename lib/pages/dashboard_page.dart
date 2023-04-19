@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ryc_desafio_do_modulo_basico/components/dashboard.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -9,6 +10,12 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   bool _showForm = false;
+
+  void _toggleForm() {
+    setState(() {
+      _showForm = !_showForm;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,14 +36,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 ),
               ],
             )
-          : ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  _showForm = true;
-                });
-              },
-              child: const Text('Add Task'),
-            ),
+          : Dashboard(_toggleForm),
     );
   }
 }
