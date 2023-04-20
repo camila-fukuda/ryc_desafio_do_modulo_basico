@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:ryc_desafio_do_modulo_basico/components/dashboard.dart';
 import 'package:ryc_desafio_do_modulo_basico/components/task_form.dart';
 import 'package:ryc_desafio_do_modulo_basico/data/dummy_data.dart';
 import 'package:ryc_desafio_do_modulo_basico/models/task.dart';
+import 'package:ryc_desafio_do_modulo_basico/models/task_list.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});

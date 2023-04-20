@@ -57,14 +57,15 @@ class TaskItem extends StatelessWidget {
             padding: const EdgeInsets.only(left: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                const Text(
+              children: const [
+                Text(
                   'DAYS LEFT',
                   style: TextStyle(color: Colors.grey),
                 ),
                 Text(
-                  '${daysLeft(task)}',
-                  style: const TextStyle(color: Colors.grey),
+                  '11',
+                  // '${daysLeft(task)}',
+                  style: TextStyle(color: Colors.grey),
                 ),
               ],
             ),

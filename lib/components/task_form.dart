@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import 'package:ryc_desafio_do_modulo_basico/models/task_list.dart';
 
 class TaskForm extends StatefulWidget {
   final Function() goToDashboard;
@@ -18,8 +20,32 @@ class _TaskFormState extends State<TaskForm> {
 
   @override
   Widget build(BuildContext context) {
+    final TaskList taskList = Provider.of(context);
+
     void saveForm() {
       print('save form');
+
+      print('length before: ${taskList.taskCount}');
+
+      final isValid = formKey.currentState?.validate() ?? false;
+
+      if (!isValid) {
+        return;
+      }
+
+      formKey.currentState?.save();
+
+      Provider.of<TaskList>(
+        context,
+        listen: false,
+      ).addTask({
+        'title': formData['title'] as String,
+        'description': formData['description'] as String,
+        'limitDate': formData['limitDate'] as DateTime
+      });
+
+      print('length after: ${taskList.taskCount}');
+      // print(taskList.tasks.toList()[11].limitDate);
     }
 
     pressShowDatePicker() {
@@ -34,60 +60,67 @@ class _TaskFormState extends State<TaskForm> {
           return;
         }
         setState(() {
-          print('pickedDate ${DateFormat('dd/MM/y').format(pickedDate)}');
+          print('pickedDate ${pickedDate}');
           formData['limitDate'] = pickedDate;
           dateController.text = DateFormat('dd/MM/y').format(pickedDate);
         });
       });
     }
 
-    return Form(
-      key: formKey,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text('Title'),
-            TextFormField(
-              initialValue: widget.newTaskTitle,
-              validator: (title) {
-                if (title == null || title.isEmpty || title.trim().length < 3) {
-                  return 'Please enter a title that has at least 3';
-                }
-                return null;
-              },
-              onSaved: (title) => formData['title'] = title ?? '',
-            ),
-            const SizedBox(height: 16),
-            const Text('Description'),
-            TextFormField(
-              maxLines: null,
-              onSaved: (description) =>
-                  formData['description'] = description ?? '',
-            ),
-            const SizedBox(height: 16),
-            const Text('Date'),
-            TextField(
-              controller: dateController,
-              decoration: const InputDecoration(
-                  icon: Icon(Icons.calendar_today),
-                  labelText: "Selecione uma data"),
-              readOnly: true,
-              onTap: pressShowDatePicker,
-            ),
-            Align(
-              alignment: Alignment.center,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 40),
-                child: ElevatedButton.icon(
-                  onPressed: saveForm,
-                  icon: const Icon(Icons.save),
-                  label: const Text('Save'),
+    return Align(
+      alignment: Alignment.topCenter,
+      child: Form(
+        key: formKey,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text('Title'),
+                TextFormField(
+                  initialValue: widget.newTaskTitle,
+                  validator: (title) {
+                    if (title == null ||
+                        title.isEmpty ||
+                        title.trim().length < 3) {
+                      return 'Please enter a title that has at least 3';
+                    }
+                    return null;
+                  },
+                  onSaved: (title) => formData['title'] = title ?? '',
                 ),
-              ),
+                const SizedBox(height: 16),
+                const Text('Description'),
+                TextFormField(
+                  maxLines: null,
+                  onSaved: (description) =>
+                      formData['description'] = description ?? '',
+                ),
+                const SizedBox(height: 16),
+                const Text('Date'),
+                TextField(
+                  controller: dateController,
+                  decoration: const InputDecoration(
+                      icon: Icon(Icons.calendar_today),
+                      labelText: "Selecione uma data"),
+                  readOnly: true,
+                  onTap: pressShowDatePicker,
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: ElevatedButton.icon(
+                      onPressed: saveForm,
+                      icon: const Icon(Icons.save),
+                      label: const Text('Save'),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

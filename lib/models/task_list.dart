@@ -7,7 +7,7 @@ import 'package:ryc_desafio_do_modulo_basico/models/task.dart';
 class TaskList with ChangeNotifier {
   final List<Task> _taskList = dummyTasks;
 
-  List<Task> get items => [..._taskList];
+  List<Task> get tasks => [..._taskList];
 
   void addTask(Map<String, Object> newTask) {
     String newId = Random().nextDouble().toString();
@@ -24,5 +24,11 @@ class TaskList with ChangeNotifier {
     );
 
     _taskList.add(taskToAdd);
+
+    notifyListeners();
+  }
+
+  int get taskCount {
+    return _taskList.length;
   }
 }
