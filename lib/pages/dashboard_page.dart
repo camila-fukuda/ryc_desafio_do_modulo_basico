@@ -19,7 +19,6 @@ class _DashboardPageState extends State<DashboardPage> {
 
   void _toggleForm() {
     setState(() {
-      print('toggle');
       _showForm = !_showForm;
     });
   }
@@ -27,8 +26,6 @@ class _DashboardPageState extends State<DashboardPage> {
   void _addNewTask(String title) {
     setState(() {
       newTaskTitle = title;
-      print('set new title : $title');
-      print('toggle');
       _showForm = true;
     });
   }
@@ -39,7 +36,7 @@ class _DashboardPageState extends State<DashboardPage> {
       padding: const EdgeInsets.all(20),
       child: Center(
         child: _showForm
-            ? TaskForm(_toggleForm)
+            ? TaskForm(_toggleForm, newTaskTitle)
             : Dashboard(
                 onAddTaskPressed: _addNewTask,
                 taskList: tasks,

@@ -3,26 +3,27 @@ import 'package:intl/intl.dart';
 
 class TaskForm extends StatefulWidget {
   final Function() goToDashboard;
-
-  const TaskForm(this.goToDashboard, {super.key});
+  String newTaskTitle;
+  TaskForm(this.goToDashboard, this.newTaskTitle, {super.key});
 
   @override
   State<TaskForm> createState() => _TaskFormState();
 }
 
 class _TaskFormState extends State<TaskForm> {
+  final formData = <String, Object>{};
+  final formKey = GlobalKey<FormState>();
+  final dateController =
+      TextEditingController(text: DateFormat('dd/MM/y').format(DateTime.now()));
+
   @override
   Widget build(BuildContext context) {
-    final formData = <String, Object>{};
-    final formKey = GlobalKey<FormState>();
-    final dateController = TextEditingController(
-        text: DateFormat('dd/MM/y').format(DateTime.now()));
-
-    // void saveForm() {
-    //   print('save form');
-    // }
+    void saveForm() {
+      print('save form');
+    }
 
     pressShowDatePicker() {
+      print('pressShowDatePicker');
       showDatePicker(
               context: context,
               initialDate: DateTime.now(),
@@ -32,9 +33,8 @@ class _TaskFormState extends State<TaskForm> {
         if (pickedDate == null) {
           return;
         }
-
         setState(() {
-          print(DateFormat('dd/MM/y').format(pickedDate));
+          print('pickedDate ${DateFormat('dd/MM/y').format(pickedDate)}');
           formData['limitDate'] = pickedDate;
           dateController.text = DateFormat('dd/MM/y').format(pickedDate);
         });
@@ -50,6 +50,7 @@ class _TaskFormState extends State<TaskForm> {
           children: [
             const Text('Title'),
             TextFormField(
+              initialValue: widget.newTaskTitle,
               validator: (title) {
                 if (title == null || title.isEmpty || title.trim().length < 3) {
                   return 'Please enter a title that has at least 3';
@@ -74,6 +75,17 @@ class _TaskFormState extends State<TaskForm> {
                   labelText: "Selecione uma data"),
               readOnly: true,
               onTap: pressShowDatePicker,
+            ),
+            Align(
+              alignment: Alignment.center,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 40),
+                child: ElevatedButton.icon(
+                  onPressed: saveForm,
+                  icon: const Icon(Icons.save),
+                  label: const Text('Save'),
+                ),
+              ),
             ),
           ],
         ),
