@@ -3,19 +3,24 @@ import 'package:ryc_desafio_do_modulo_basico/components/task_item.dart';
 import 'package:ryc_desafio_do_modulo_basico/models/task.dart';
 
 class Dashboard extends StatelessWidget {
-  final Function() onAddTaskPressed;
+  final Function(String) onAddTaskPressed;
   final List<Task> taskList;
 
-  const Dashboard(this.taskList, this.onAddTaskPressed, {super.key});
+  const Dashboard(
+      {Key? key, required this.taskList, required this.onAddTaskPressed})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final titleController = TextEditingController();
+
     return Column(
       children: [
         Row(
           children: [
             Expanded(
               child: TextField(
+                controller: titleController,
                 keyboardType: TextInputType.text,
                 decoration: InputDecoration(
                   helperText: 'Type the name of the new task.',
@@ -39,7 +44,7 @@ class Dashboard extends StatelessWidget {
                   Icons.add_circle_outlined,
                 ),
                 color: Theme.of(context).colorScheme.secondary,
-                onPressed: onAddTaskPressed,
+                onPressed: () => onAddTaskPressed(titleController.text),
               ),
             ),
           ],
