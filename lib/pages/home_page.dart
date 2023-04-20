@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:ryc_desafio_do_modulo_basico/components/status_app_bar.dart';
 import 'package:ryc_desafio_do_modulo_basico/pages/dashboard_page.dart';
 import 'package:ryc_desafio_do_modulo_basico/pages/rewards_page.dart';
+import 'package:ryc_desafio_do_modulo_basico/utils/app_routes.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _DashboardState();
@@ -28,6 +29,9 @@ class _DashboardState extends State<HomePage> {
     setState(() {
       _selectedScreenIndex = index;
     });
+    if (index == 0) {
+      Navigator.of(context).pushReplacementNamed(AppRoutes.HOME);
+    }
   }
 
   @override
