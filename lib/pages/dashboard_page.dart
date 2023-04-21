@@ -34,10 +34,19 @@ class _DashboardPageState extends State<DashboardPage> {
 
     return Padding(
       padding: const EdgeInsets.all(20),
-      child: Center(
-        child: _showForm
-            ? TaskForm(_toggleForm, newTaskTitle)
-            : Dashboard(onAddTaskPressed: _addNewTask),
+      child: GestureDetector(
+        onTap: () {
+          final currentFocus = FocusScope.of(context);
+
+          if (!currentFocus.hasPrimaryFocus) {
+            currentFocus.unfocus();
+          }
+        },
+        child: Center(
+          child: _showForm
+              ? TaskForm(_toggleForm, newTaskTitle)
+              : Dashboard(onAddTaskPressed: _addNewTask),
+        ),
       ),
     );
   }

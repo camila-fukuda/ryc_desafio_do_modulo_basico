@@ -75,6 +75,7 @@ class _TaskFormState extends State<TaskForm> {
               children: [
                 const Text('Title'),
                 TextFormField(
+                  textInputAction: TextInputAction.next,
                   initialValue: widget.newTaskTitle,
                   validator: (title) {
                     if (title == null ||
@@ -89,6 +90,7 @@ class _TaskFormState extends State<TaskForm> {
                 const SizedBox(height: 16),
                 const Text('Description'),
                 TextFormField(
+                  textInputAction: TextInputAction.next,
                   maxLines: null,
                   onSaved: (description) =>
                       formData['description'] = description ?? '',
