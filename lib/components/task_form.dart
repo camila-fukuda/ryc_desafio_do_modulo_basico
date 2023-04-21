@@ -51,7 +51,7 @@ class _TaskFormState extends State<TaskForm> {
         context: context,
         initialDate: DateTime.now(),
         firstDate: DateTime(2019),
-        lastDate: DateTime.now(),
+        lastDate: DateTime(2030),
       ).then((pickedDate) {
         if (pickedDate == null) {
           return;

@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-
-class Task with ChangeNotifier {
+class Task {
   final String id;
   final String title;
   final String description;

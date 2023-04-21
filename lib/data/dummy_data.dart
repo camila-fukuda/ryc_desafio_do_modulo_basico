@@ -1,4 +1,34 @@
+import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:ryc_desafio_do_modulo_basico/models/reward.dart';
+
 import '../models/task.dart';
+
+final dummyRewards = [
+  Reward(
+    id: 'r1',
+    name: 'Healing Potion',
+    price: 8,
+    livesToRestore: 2,
+    icon: const Icon(
+      size: 40,
+      FontAwesomeIcons.flask,
+      color: Colors.white,
+    ),
+  ),
+  Reward(
+    id: 'r2',
+    name: 'Bandage',
+    price: 5,
+    livesToRestore: 1,
+    icon: const Icon(
+      size: 40,
+      FontAwesomeIcons.bandAid,
+      color: Colors.white,
+    ),
+  )
+];
 
 final dummyTasks = [
   Task(
