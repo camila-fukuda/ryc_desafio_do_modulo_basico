@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ryc_desafio_do_modulo_basico/models/reward.dart';
+import 'package:ryc_desafio_do_modulo_basico/models/task_list.dart';
 
 class UserInfo with ChangeNotifier {
   String userName = 'Camila';
@@ -34,5 +36,23 @@ class UserInfo with ChangeNotifier {
 
     print('totalOfCoins $totalOfCoins');
     notifyListeners();
+  }
+
+  bool spendCoins(int value) {
+    if (totalOfCoins - value >= 0) {
+      totalOfCoins = totalOfCoins - value;
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  bool buyReward(Reward reward) {
+    if (spendCoins(reward.price)) {
+      restoreLife(reward.livesToRestore);
+      return true;
+    } else {
+      return false;
+    }
   }
 }

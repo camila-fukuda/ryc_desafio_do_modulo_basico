@@ -4,6 +4,7 @@ import 'package:ryc_desafio_do_modulo_basico/models/reward.dart';
 class RewardItem extends StatelessWidget {
   final Reward reward;
   final Function(Reward) buyReward;
+
   const RewardItem(this.reward, this.buyReward, {super.key});
 
   @override
@@ -61,7 +62,31 @@ class RewardItem extends StatelessWidget {
                   Icons.shopping_cart,
                   color: Color.fromARGB(255, 29, 119, 192),
                 ),
-                onPressed: () => buyReward(reward),
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: const Text('Confirm purchase'),
+                        content: Text(
+                            'Do you want to spend ${reward.price} coins to buy ${reward.name}?'),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: const Text('Cancel'),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                              buyReward(reward);
+                            },
+                            child: const Text('Buy'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
               )
             ],
           ),

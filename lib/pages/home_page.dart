@@ -19,6 +19,7 @@ class _DashboardState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+
     _screens = [
       {'title': 'Home Page', 'screen': const DashboardPage()},
       {'title': 'Rewards', 'screen': const RewardsPage()},
