@@ -8,6 +8,7 @@ class TaskItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int daysLeft(Task task) {
+      print('TaskItem limitDate ${task.limitDate}');
       return DateTime.now().difference(task.limitDate).inDays < 0
           ? 0
           : DateTime.now().difference(task.limitDate).inDays;

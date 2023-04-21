@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:ryc_desafio_do_modulo_basico/models/task.dart';
+import 'package:ryc_desafio_do_modulo_basico/models/task_list.dart';
 import 'package:ryc_desafio_do_modulo_basico/models/task_list.dart';
 
 class TaskForm extends StatefulWidget {
@@ -20,13 +22,7 @@ class _TaskFormState extends State<TaskForm> {
 
   @override
   Widget build(BuildContext context) {
-    final TaskList taskList = Provider.of(context);
-
     void saveForm() {
-      print('save form');
-
-      print('length before: ${taskList.taskCount}');
-
       final isValid = formKey.currentState?.validate() ?? false;
 
       if (!isValid) {
@@ -44,12 +40,10 @@ class _TaskFormState extends State<TaskForm> {
         'limitDate': formData['limitDate'] as DateTime
       });
 
-      print('length after: ${taskList.taskCount}');
-      // print(taskList.tasks.toList()[11].limitDate);
+      widget.goToDashboard();
     }
 
     pressShowDatePicker() {
-      print('pressShowDatePicker');
       showDatePicker(
               context: context,
               initialDate: DateTime.now(),
@@ -60,7 +54,6 @@ class _TaskFormState extends State<TaskForm> {
           return;
         }
         setState(() {
-          print('pickedDate ${pickedDate}');
           formData['limitDate'] = pickedDate;
           dateController.text = DateFormat('dd/MM/y').format(pickedDate);
         });

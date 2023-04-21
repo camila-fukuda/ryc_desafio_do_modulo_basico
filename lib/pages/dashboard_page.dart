@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ryc_desafio_do_modulo_basico/components/dashboard.dart';
 import 'package:ryc_desafio_do_modulo_basico/components/task_form.dart';
-import 'package:ryc_desafio_do_modulo_basico/data/dummy_data.dart';
 import 'package:ryc_desafio_do_modulo_basico/models/task.dart';
 import 'package:ryc_desafio_do_modulo_basico/models/task_list.dart';
 
@@ -14,8 +13,6 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
-  List<Task> tasks = dummyTasks;
-
   bool _showForm = false;
   String newTaskTitle = '';
 
@@ -34,6 +31,8 @@ class _DashboardPageState extends State<DashboardPage> {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<TaskList>(context);
+
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Center(
@@ -41,7 +40,7 @@ class _DashboardPageState extends State<DashboardPage> {
             ? TaskForm(_toggleForm, newTaskTitle)
             : Dashboard(
                 onAddTaskPressed: _addNewTask,
-                taskList: tasks,
+                taskList: provider.taskList,
               ),
       ),
     );
