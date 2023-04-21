@@ -23,11 +23,20 @@ class TaskList with ChangeNotifier {
       title: newTask['title'] as String,
       description: newTask['description'] as String,
       limitDate: newTask['limitDate'] as DateTime,
+      done: false,
     );
 
     _taskList.add(taskToAdd);
 
     notifyListeners();
+  }
+
+  void completeTask(Task task) {
+    final int taskIndex = _taskList.indexWhere((t) => t.id == task.id);
+    if (taskIndex >= 0) {
+      _taskList[taskIndex].done = true;
+      notifyListeners();
+    }
   }
 
   int get taskCount {

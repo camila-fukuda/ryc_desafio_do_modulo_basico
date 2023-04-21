@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:ryc_desafio_do_modulo_basico/components/task_item.dart';
 import 'package:ryc_desafio_do_modulo_basico/models/task.dart';
+import 'package:ryc_desafio_do_modulo_basico/models/task_list.dart';
 
 class Dashboard extends StatelessWidget {
   final Function(String) onAddTaskPressed;
-  final List<Task> taskList;
 
-  const Dashboard(
-      {Key? key, required this.taskList, required this.onAddTaskPressed})
-      : super(key: key);
+  const Dashboard({Key? key, required this.onAddTaskPressed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<TaskList>(context);
+    final List<Task> taskList = provider.taskList;
+
     final titleController = TextEditingController();
+
+    void markAsdone(Task task) {
+      provider.completeTask(task);
+    }
 
     return Column(
       children: [
@@ -59,7 +65,7 @@ class Dashboard extends StatelessWidget {
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.only(bottom: 15),
-                child: TaskItem(taskList[index]),
+                child: TaskItem(taskList[index], markAsdone),
               );
             },
           ),

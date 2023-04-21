@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ryc_desafio_do_modulo_basico/components/dashboard.dart';
 import 'package:ryc_desafio_do_modulo_basico/components/task_form.dart';
-import 'package:ryc_desafio_do_modulo_basico/models/task.dart';
 import 'package:ryc_desafio_do_modulo_basico/models/task_list.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -38,10 +37,7 @@ class _DashboardPageState extends State<DashboardPage> {
       child: Center(
         child: _showForm
             ? TaskForm(_toggleForm, newTaskTitle)
-            : Dashboard(
-                onAddTaskPressed: _addNewTask,
-                taskList: provider.taskList,
-              ),
+            : Dashboard(onAddTaskPressed: _addNewTask),
       ),
     );
   }

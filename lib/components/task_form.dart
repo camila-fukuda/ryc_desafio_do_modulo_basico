@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:ryc_desafio_do_modulo_basico/models/task.dart';
-import 'package:ryc_desafio_do_modulo_basico/models/task_list.dart';
 import 'package:ryc_desafio_do_modulo_basico/models/task_list.dart';
 
+// ignore: must_be_immutable
 class TaskForm extends StatefulWidget {
   final Function() goToDashboard;
   String newTaskTitle;
@@ -31,13 +30,17 @@ class _TaskFormState extends State<TaskForm> {
 
       formKey.currentState?.save();
 
+      print('formData limit date  ${formData['limitDate']}');
+      print('formData title  ${formData['title']}');
+
       Provider.of<TaskList>(
         context,
         listen: false,
       ).addTask({
         'title': formData['title'] as String,
         'description': formData['description'] as String,
-        'limitDate': formData['limitDate'] as DateTime
+        'limitDate': formData['limitDate'] ?? DateTime.now(),
+        'done': false,
       });
 
       widget.goToDashboard();
@@ -45,11 +48,11 @@ class _TaskFormState extends State<TaskForm> {
 
     pressShowDatePicker() {
       showDatePicker(
-              context: context,
-              initialDate: DateTime.now(),
-              firstDate: DateTime(2019),
-              lastDate: DateTime.now())
-          .then((pickedDate) {
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(2019),
+        lastDate: DateTime.now(),
+      ).then((pickedDate) {
         if (pickedDate == null) {
           return;
         }
