@@ -30,8 +30,6 @@ class _DashboardPageState extends State<DashboardPage> {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<TaskList>(context);
-
     return Padding(
       padding: const EdgeInsets.all(20),
       child: GestureDetector(

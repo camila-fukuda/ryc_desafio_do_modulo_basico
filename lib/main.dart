@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ryc_desafio_do_modulo_basico/models/reward_list.dart';
 import 'package:ryc_desafio_do_modulo_basico/models/task_list.dart';
 import 'package:ryc_desafio_do_modulo_basico/pages/home_page.dart';
 import 'package:ryc_desafio_do_modulo_basico/pages/rewards_page.dart';
@@ -24,6 +25,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(
           create: (_) => TaskList(),
         ),
+        ChangeNotifierProvider(create: (_) => RewardList()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

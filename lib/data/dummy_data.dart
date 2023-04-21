@@ -9,6 +9,7 @@ final dummyRewards = [
   Reward(
     id: 'r1',
     name: 'Healing Potion',
+    description: 'Restores 2 lives.',
     price: 8,
     livesToRestore: 2,
     icon: const Icon(
@@ -20,6 +21,7 @@ final dummyRewards = [
   Reward(
     id: 'r2',
     name: 'Bandage',
+    description: 'Restores 1 life.',
     price: 5,
     livesToRestore: 1,
     icon: const Icon(
