@@ -3,7 +3,8 @@ import 'package:ryc_desafio_do_modulo_basico/models/reward.dart';
 
 class RewardItem extends StatelessWidget {
   final Reward reward;
-  const RewardItem(this.reward, {super.key});
+  final Function(Reward) buyReward;
+  const RewardItem(this.reward, this.buyReward, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -54,13 +55,13 @@ class RewardItem extends StatelessWidget {
                   ),
                 ),
               ),
-              const IconButton(
+              IconButton(
                 iconSize: 40,
-                icon: Icon(
+                icon: const Icon(
                   Icons.shopping_cart,
                   color: Color.fromARGB(255, 29, 119, 192),
                 ),
-                onPressed: null,
+                onPressed: () => buyReward(reward),
               )
             ],
           ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:ryc_desafio_do_modulo_basico/components/reward_item.dart';
 import 'package:ryc_desafio_do_modulo_basico/models/reward.dart';
@@ -7,6 +6,10 @@ import 'package:ryc_desafio_do_modulo_basico/models/reward_list.dart';
 
 class RewardsPage extends StatelessWidget {
   const RewardsPage({super.key});
+
+  buyReward(Reward reward) {
+    print('reward ${reward.name}');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +20,7 @@ class RewardsPage extends StatelessWidget {
       child: ListView.builder(
         itemCount: rewards.length,
         itemBuilder: (context, index) {
-          return RewardItem(rewards[0]);
+          return RewardItem(rewards[index], buyReward);
         },
       ),
     );

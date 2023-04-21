@@ -27,4 +27,10 @@ class UserInfo with ChangeNotifier {
       dead();
     }
   }
+
+  void completedTask() {
+    totalOfCoins += 5;
+
+    notifyListeners();
+  }
 }
