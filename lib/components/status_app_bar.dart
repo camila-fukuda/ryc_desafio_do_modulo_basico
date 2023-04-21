@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:ryc_desafio_do_modulo_basico/models/user_info.dart';
 
 class StatusAppBar extends StatelessWidget {
-  const StatusAppBar({super.key});
+  const StatusAppBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final int numberOfLives = 3;
-    final int totalOfCoins = 12220;
+    final userInfo = Provider.of<UserInfo>(context);
+
+    final int coins = userInfo.totalOfCoins;
+    final int lives = userInfo.lives;
 
     return AppBar(
       toolbarHeight: 200,
@@ -19,7 +23,7 @@ class StatusAppBar extends StatelessWidget {
         children: [
           Row(
             children: List.generate(5, (index) {
-              if (index < numberOfLives) {
+              if (index < lives) {
                 return const Icon(
                   Icons.favorite,
                   size: 50,
@@ -45,7 +49,7 @@ class StatusAppBar extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(5, 10, 10, 0),
-              child: Text('$totalOfCoins coins'),
+              child: Text('$coins coins'),
             ),
           ]),
         ],

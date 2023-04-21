@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:ryc_desafio_do_modulo_basico/data/dummy_data.dart';
 import 'package:ryc_desafio_do_modulo_basico/models/task.dart';
+import 'package:ryc_desafio_do_modulo_basico/models/user_info.dart';
 
 class TaskList with ChangeNotifier {
   final List<Task> _taskList = dummyTasks;
@@ -30,10 +31,11 @@ class TaskList with ChangeNotifier {
     notifyListeners();
   }
 
-  void completeTask(Task task) {
+  void completeTask(Task task, UserInfo userInfo) {
     final int taskIndex = _taskList.indexWhere((t) => t.id == task.id);
     if (taskIndex >= 0) {
       _taskList[taskIndex].done = true;
+      userInfo.completedTask();
       notifyListeners();
     }
   }

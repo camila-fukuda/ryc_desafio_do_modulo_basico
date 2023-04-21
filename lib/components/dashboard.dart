@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:ryc_desafio_do_modulo_basico/components/task_item.dart';
 import 'package:ryc_desafio_do_modulo_basico/models/task.dart';
 import 'package:ryc_desafio_do_modulo_basico/models/task_list.dart';
+import 'package:ryc_desafio_do_modulo_basico/models/user_info.dart';
 
 class Dashboard extends StatelessWidget {
   final Function(String) onAddTaskPressed;
@@ -17,7 +18,8 @@ class Dashboard extends StatelessWidget {
     final titleController = TextEditingController();
 
     void markAsdone(Task task) {
-      provider.completeTask(task);
+      provider.completeTask(
+          task, Provider.of<UserInfo>(context, listen: false));
     }
 
     return Column(

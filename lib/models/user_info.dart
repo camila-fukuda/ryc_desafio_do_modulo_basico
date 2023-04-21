@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class UserInfo with ChangeNotifier {
+  String userName = 'Camila';
   static int maxLifes = 5;
   int totalOfCoins = 0;
-  int lives = 5;
+  int lives = 3;
   String profilePicUrl = "lib/assets/cat-profile.jpg";
 
   void dead() {
@@ -31,6 +32,7 @@ class UserInfo with ChangeNotifier {
   void completedTask() {
     totalOfCoins += 5;
 
+    print('totalOfCoins $totalOfCoins');
     notifyListeners();
   }
 }

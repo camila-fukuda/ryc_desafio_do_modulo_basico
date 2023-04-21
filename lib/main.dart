@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ryc_desafio_do_modulo_basico/models/reward_list.dart';
 import 'package:ryc_desafio_do_modulo_basico/models/task_list.dart';
+import 'package:ryc_desafio_do_modulo_basico/models/user_info.dart';
 import 'package:ryc_desafio_do_modulo_basico/pages/home_page.dart';
 import 'package:ryc_desafio_do_modulo_basico/pages/rewards_page.dart';
 import 'package:ryc_desafio_do_modulo_basico/utils/app_routes.dart';
@@ -22,10 +23,9 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (_) => TaskList(),
-        ),
+        ChangeNotifierProvider(create: (_) => TaskList()),
         ChangeNotifierProvider(create: (_) => RewardList()),
+        ChangeNotifierProvider(create: (_) => UserInfo()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
