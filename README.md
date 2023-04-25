@@ -2,15 +2,8 @@
 
 A new Flutter project.
 
-## Getting Started
+## Pendências
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- O scroll na lista de tarefas não está certinho, ele está visivel por baixo dos outros componentes.
+- O calculo de vidas atuais não está sendo distribuído pelo provider. Ainda não entendi o motivo.
+- Adicionar uma imagem no perfil.
