@@ -65,8 +65,8 @@ class Dashboard extends StatelessWidget {
           child: ListView.builder(
             itemCount: taskList.length,
             itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 15),
+              return Card(
+                margin: const EdgeInsets.only(bottom: 15),
                 child: TaskItem(taskList[index], markAsdone),
               );
             },
