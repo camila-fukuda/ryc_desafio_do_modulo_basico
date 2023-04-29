@@ -16,8 +16,6 @@ class TaskList with ChangeNotifier {
       newId = Random().nextDouble().toString();
     }
 
-    print('newId: $newId ${newTask['limitDate']}');
-
     final taskToAdd = Task(
       id: newId,
       title: newTask['title'] as String,

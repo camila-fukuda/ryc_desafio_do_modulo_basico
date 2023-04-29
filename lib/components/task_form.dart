@@ -30,9 +30,6 @@ class _TaskFormState extends State<TaskForm> {
 
       formKey.currentState?.save();
 
-      print('formData limit date  ${formData['limitDate']}');
-      print('formData title  ${formData['title']}');
-
       Provider.of<TaskList>(
         context,
         listen: false,
